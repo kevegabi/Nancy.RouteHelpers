@@ -94,5 +94,26 @@
         {
             return new RouteParameters().Exact(NamedGroup, Exact);
         }       
+        
+        /// <summary>
+        /// Creates a route that expects at least one Guid, for example, /products/4366C38F-AF71-4A14-8622-13DBF51ED49A
+        /// </summary>
+        /// <param name="NamedGroup">The name of the parameter in the route</param>
+        /// <returns></returns>
+        public static RouteParameters AnyGuidAtLeastOnce(string NamedGroup)
+        {
+            return new RouteParameters().AnyGuidAtLeastOnce(NamedGroup);
+        }
+
+        /// <summary>
+        /// Creates a route that will accept an Guid but the URL doesn't always have to contain one, for example, /products OR /products/4366C38F-AF71-4A14-8622-13DBF51ED49A. NOTE: Do not use a / in your route before using this method as one is included
+        /// </summary>
+        /// <param name="NamedGroup">The name of the parameter in the route</param>
+        /// <returns></returns>
+        public static RouteParameters AnyGuidOptional(string NamedGroup)
+        {
+            return new RouteParameters().AnyGuidOptional(NamedGroup);
+        }
+        
     }
 }
