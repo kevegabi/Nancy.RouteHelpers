@@ -123,5 +123,29 @@ namespace Nancy.RouteHelpers
 
             return this;
         }
+        
+        
+        /// <summary>
+        /// Creates a route that expects at least one Guid, for example, /products/4366C38F-AF71-4A14-8622-13DBF51ED49A
+        /// </summary>
+        /// <param name="NamedGroup">The name of the parameter in the route</param>
+        /// <returns></returns>
+        public RouteParameters AnyGuidAtLeastOnce(string NamedGroup)
+        {
+            RouteBuilder.Append(@"(?<" + NamedGroup + @">[(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}]+)");
+            return this;
+        }
+
+        /// <summary>
+        /// Creates a route that will accept an Guid but the URL doesn't always have to contain one, for example, /products OR /products/4366C38F-AF71-4A14-8622-13DBF51ED49A. NOTE: Do not use a / in your route before using this method as one is included
+        /// </summary>
+        /// <param name="NamedGroup">The name of the parameter in the route</param>
+        /// <returns></returns>
+        public RouteParameters AnyGuidOptional(string NamedGroup)
+        {
+            RouteBuilder.Append(@"/?(?<" + NamedGroup + @">[(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}]*)");
+            return this;
+        }
+        
     }
 }
